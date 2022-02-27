@@ -70,6 +70,12 @@
 
 ![img](https://pic2.zhimg.com/80/v2-31a3f3d822e9c7cd2264054b0808ab61_720w.jpg)
 
+## 常用流程
+
+![image-20220227180445694](images/image-20220227180445694.png)
+
+![image-20220227180529188](images/image-20220227180529188.png)
+
 ## bug
 
 * `fatal: unable to access 'https://github.com/yingqing0317/learn_git/': OpenSSL SSL_read: Connection was reset, errno 10054`
@@ -87,6 +93,10 @@
 * 本地图片上传
 
 [本地图片上传到GitHub，MarkDown使用Github图片地址 - Learning_more - 博客园 (cnblogs.com)](https://www.cnblogs.com/ghm-777/p/11433425.html)
+
+实用：格式-图像-全局图像设置-...（直接在该文件夹创建一个images文件，一同上传到远程仓库）
+
+![image-20220227180647034](images/image-20220227180647034.png)
 
 
 
@@ -133,7 +143,7 @@ Webhook 就是一个接收 HTTP POST（或GET，PUT，DELETE）的URL，一个�
 
 [HTTP协议和SOCKS5协议 - 尹正杰 - 博客园 (cnblogs.com)](https://www.cnblogs.com/yinzhengjie/p/7357860.html)
 
-![image-20220226140422122](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226140422122.png)
+![image-20220226140422122](images/image-20220226140422122.png)
 
 ### HTTP请求
 
