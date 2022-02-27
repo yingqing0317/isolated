@@ -1,4 +1,4 @@
-# Git
+# 1.Git
 
 ## 常用指令
 
@@ -80,15 +80,13 @@
 
 反复`git push 远程分支名 本地分支名`
 
+* 本地图片上传
+
+[本地图片上传到GitHub，MarkDown使用Github图片地址 - Learning_more - 博客园 (cnblogs.com)](https://www.cnblogs.com/ghm-777/p/11433425.html)
 
 
 
-
-
-
-
-
-# Markdown
+# 2.Markdown
 
 ![image-20220226130549560](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226130549560.png)
 
@@ -110,41 +108,39 @@
 
 
 
-# GUI
+# 3.概念
+
+## GUI
 
 图形用户界面（Graphical User Interface，简称 GUI，又称图形用户接口）是指采用图形方式显示的计算机操作用户界面。
 
-
-
-# Webhook
+## Webhook
 
 Webhook 就是一个接收 HTTP POST（或GET，PUT，DELETE）的URL，一个实现了 Webhook 的 API 提供商就是在当事件发生的时候会向这个配置好的 URL 发送一条信息，与请求-响应式不同，使用 Webhook 你可以实时接受到变化。
 
 这又是一种对 `客户机-服务器` 模式的逆转，在传统方法中，客户端从服务器请求数据，然后服务器提供给客户端数据（客户端是在拉数据），在 Webhook 范式下，服务器更新所需提供的资源，然后自动将其作为更新发送到客户端（服务器是在推数据），客户端不是请求者，而是被动接收方；这种控制关系的反转可以用来促进许多原本需要在远程服务器上进行更复杂的请求和不断的轮询的通信请求；通过简单地接收资源而不是直接发送请求，我们可以更新远程代码库，轻松地分配资源，甚至将其集成到现有系统中来根据 API 的需要来更新端点和相关数据，唯一的缺点是初始建立困难。
 
-## URL
+### URL
 
 统一资源定位系统（uniform resource locator;URL）是因特网的万维网服务程序上用于指定信息位置的表示方法。HTTP URL 方案是用来标志因特网上使用HTTP(HyperText Transfer Protocol，超文本传输协议)的可达资源。![image-20220226140422122](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226140422122.png)
 
-## HTTP请求
+### HTTP请求
 
 [(41条消息) HTTP请求的完全过程_ailunlee的博客-CSDN博客_http请求](https://blog.csdn.net/ailunlee/article/details/90600174)
 
-## API
+### API
 
 API（Application Programming Interface，应用程序接口）是一些预先定义的接口（如函数、HTTP接口），或指软件系统不同组成部分衔接的约定。用来提供应用程序与开发人员基于某软件或硬件得以访问的一组[例程](https://baike.baidu.com/item/例程/2390628)，而又无需访问源码，或理解内部工作机制的细节。
 
-
-
-# 快照
+## 快照
 
 快照指照相馆的一种冲洗过程短的照片·如：证件快照。基于硬件编程技术的一种，针对内存进行的快速读取技术，常用于硬件开发。
 
 
 
+# 4.深度学习
 
-
-# BN、ReLU与Conv融合
+## BN、ReLU与Conv融合
 
 [神经网络量化入门--Folding BN ReLU - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/176982058)
 
