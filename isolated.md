@@ -14,11 +14,7 @@
 
 * 提交`git commit`
 
-  ![image-20220226001944109](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226001944109.png)
-
-  ![image-20220226001957669](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226001957669.png)
-
-  
+  ![image-20220226001957669](images/image-20220226001957669.png)
 
 * 克隆`git clone 网址`
 
@@ -54,19 +50,19 @@
 * 查看各个分支当前所指的对象`git log --online --decorate (--graph --all)`
 * 切换到已存在的分支`git checkout 分支名`（这样HEAD就指向该分支了）
 * 创建并切换到新分支`git checkout -b 分支名`
-* 合并分支`git merge 待合并分支名`（合并当前分支和待合并分支）![image-20220226235334197](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226235334197.png)
+* 合并分支`git merge 待合并分支名`（合并当前分支和待合并分支）![image-20220226235334197](images/image-20220226235334197.png)
 * 删除分支`git branch -d 分支名`
 
-![image-20220226235527613](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226235527613.png)
+![image-20220226235527613](images/image-20220226235527613.png)
 
 * 查看状态`git status`
 
-![image-20220227000737911](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220227000737911.png)
+![image-20220227000737911](images/image-20220227000737911.png)
 
 * 使用图形化工具解决冲突`git mergetool`
 * 查看分支情况`git branch`
 
-![image-20220227001155763](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220227001155763.png)
+![image-20220227001155763](images/image-20220227001155763.png)
 
 * 查看分支合并情况`git branch --merged/--no-merged`（注：已合并到当前分支的可以直接删掉，未合并到当前分支的则须强制删除-如果需要的话）
 
@@ -84,7 +80,9 @@
 
 （注：Port=7890）
 
-![image-20220227163041609](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220227163041609.png)
+[(41条消息) github设置添加SSH_Kevin's Blog-CSDN博客_github添加ssh](https://blog.csdn.net/Aaron_Miller/article/details/90269019)
+
+![image-20220227163041609](images/image-20220227163041609.png)
 
 * 本地图片上传
 
@@ -94,7 +92,7 @@
 
 # 2.Markdown
 
-![image-20220226130549560](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226130549560.png)
+![image-20220226130549560](images/image-20220226130549560.png)
 
 **加粗**
 
@@ -110,7 +108,7 @@
 
 :joy:表情（:<表情名称>:）
 
-![image-20220226133419799](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226133419799.png)
+![image-20220226133419799](images/image-20220226133419799.png)
 
 
 
