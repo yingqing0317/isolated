@@ -69,7 +69,18 @@
 ![image-20220227001155763](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220227001155763.png)
 
 * 查看分支合并情况`git branch --merged/--no-merged`（注：已合并到当前分支的可以直接删掉，未合并到当前分支的则须强制删除-如果需要的话）
-* 
+
+## 思维导图
+
+![img](https://pic2.zhimg.com/80/v2-31a3f3d822e9c7cd2264054b0808ab61_720w.jpg)
+
+## bug
+
+* `fatal: unable to access 'https://github.com/yingqing0317/learn_git/': OpenSSL SSL_read: Connection was reset, errno 10054`
+
+反复`git push 远程分支名 本地分支名`
+
+
 
 
 
