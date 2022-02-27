@@ -78,7 +78,13 @@
 
 * `fatal: unable to access 'https://github.com/yingqing0317/learn_git/': OpenSSL SSL_read: Connection was reset, errno 10054`
 
-反复`git push 远程分支名 本地分支名`
+方法一：反复`git push 远程分支名 本地分支名`
+
+方法二：[git设置代理 - 简书 (jianshu.com)](https://www.jianshu.com/p/7f1611823e00)
+
+（注：Port=7890）
+
+![image-20220227163041609](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220227163041609.png)
 
 * 本地图片上传
 
@@ -122,7 +128,14 @@ Webhook 就是一个接收 HTTP POST（或GET，PUT，DELETE）的URL，一个�
 
 ### URL
 
-统一资源定位系统（uniform resource locator;URL）是因特网的万维网服务程序上用于指定信息位置的表示方法。HTTP URL 方案是用来标志因特网上使用HTTP(HyperText Transfer Protocol，超文本传输协议)的可达资源。![image-20220226140422122](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226140422122.png)
+统一资源定位系统（uniform resource locator;URL）是因特网的万维网服务程序上用于指定信息位置的表示方法。HTTP URL 方案是用来标志因特网上使用HTTP(HyperText Transfer Protocol，超文本传输协议)的可达资源。
+
+* 我们在浏览器的地址栏里输入的网站地址叫做URL (Uniform Resource Locator，统一资源定位符)。
+* 浏览器通过超文本传输协议(HTTP)，将Web服务器上站点的网页代码提取出来，并翻译成漂亮的网页
+
+[HTTP协议和SOCKS5协议 - 尹正杰 - 博客园 (cnblogs.com)](https://www.cnblogs.com/yinzhengjie/p/7357860.html)
+
+![image-20220226140422122](C:\Users\青\AppData\Roaming\Typora\typora-user-images\image-20220226140422122.png)
 
 ### HTTP请求
 
