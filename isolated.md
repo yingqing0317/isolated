@@ -173,3 +173,196 @@ API（Application Programming Interface，应用程序接口）是一些预先�
 
 
 
+# 5.mix_quantization
+
+## 5.1 流程
+
+### 5.1.1 kill-the-bits流程图
+
+![](images/kill.jpg)
+
+### 5.1.2 mix_quantization编程逻辑
+
+> 我们在训练量化模型的时候:
+>
+> ①先是用的float的权值和激活，学习码本，这样float码本的精度更高，所以先是调用的pq
+>
+> ②然后用系数量化，量化权重（这里的权重是由码本恢复得来的）和激活，即float→int，也就是调用qat
+>
+> ③最后，用量化后的int权重和激活，微调码本
+
+> 我们在测试的时候:
+>
+> ①权重由码本恢复，激活用系数量化为int
+>
+> ②wx+b后再反量化，得到float输出，作为下一层输入，以此类推
+
+## 5.2 mix_quantization.py
+
+Mixed Quantization (Fusion Quantization)
+
+Step1: Acquire the codebook and index matrix using PQ
+
+Step2: Insert presudo quantize unit and finetune the network recovered from codebook and indexmatrix.（伪量化应该是pseudo quantize？）（ 基于量化感知训练的误差校正算法的基本思想：向经过乘积量化后的近似网络中插入伪量化单元，模拟出量化反量化操作产生的误差，反向更新网络参数，消除量化误差。此处 ‘伪量化/量化感知训练/误差校正’是一体 ）
+
+<img src="images/image-20220227224110524.png" alt="image-20220227224110524" style="zoom:50%;" />
+
+Step3: Finetune the whole network.
+
+### 5.2.1 基础
+
+* 导入包
+
+* 设置GPU设备
+
+  [(41条消息) os.environ["CUDA_DEVICE_ORDER"\] = "PCI_BUS_ID" os.environ["CUDA_VISIBLE_DEVICES"] = "0"_James_J的博客-CSDN博客](https://blog.csdn.net/Jamesjjjjj/article/details/83414680)
+
+* ```
+  if __name__ == '__main__':    main()
+  ```
+
+### 5.2.2 def parse_args(): # 命令行解析
+
+[Python argparse的用法（运行时动态传参） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/160242319)
+
+> #导包
+> import argparse
+> #创建parser对象
+> parser = argparse.ArgumentParser(...)
+> #传参
+> parser.add_argument(...)
+> #创建读取对象
+> args = parser.parse_args()
+> #返回参数（进而读取参数）
+> return args基础参数
+
+* 乘积量化pq的参数
+* 微调finetune的参数
+* 量化感知训练error correction(QAT)的参数
+
+### 5.2.3 def main():#主函数
+
+* 基础设置
+
+* `watcher`提取需要量化的层（对bias和bn差异性处理的原因？？？）
+
+  > watcher：监测并存储激活值（主要是需要量化的激活值）（BN不需要monitor）
+  >
+  > - [x] 所有的前向传播和反向传播都要用到激活值耶，都要用watcher&hook提取&保存
+  >
+  > 一层量化层对应一个watcher
+
+  - [ ] `layers = [k[:k.rfind(".")] for k in keys if 'bias' not in k]`
+
+  > 猜测：
+  >
+  > k取字符串 . 最后出现处的k值，且①从keys中依次查找②k不包括bias
+
+  - [ ] `k[:k.rfind(".")]`
+  - [ ] `if 'bias' in k`
+  - [ ] `if 'weight' in k`
+  - [ ] `attrgetter()()`
+
+  > `attrgetter()对自定义对象排序`
+
+  - [ ] `M = attrgetter(layer + '.weight.data')(student).detach()`
+
+  > 猜测：
+  >
+  > 对student模型中的以.weight.data的layer进行排序，并截断反向传播的梯度流
+
+  > rfind() 查找子串最后一次出现的位置，如果查找的子串不存在，则返回-1*
+
+  > hook:
+  >
+  > 为了节省显存（内存），pytorch在计算过程中不保存中间变量，包括中间层的特征图和非叶子张量的梯度等。有时对网络进行分析时需要查看或修改这些中间变量，此时就需要注册一个钩子（hook）来导出需要的中间变量。
+  >
+  > [(36条消息) 【pytorch学习】四种钩子方法（register_forward_hook等）的用法和注意点_Brikie的博客-CSDN博客__forward_pre_hooks](https://blog.csdn.net/Brikie/article/details/114255743?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn_v2&utm_relevant_index=1)
+  >
+  > ![image-20220228195544882](images/image-20220228195544882.png)
+
+  - [ ] 未保存中间变量，那怎么用hook导出呢？
+  - [ ] `self._watch`
+  - [ ] `if __name__ == "__main__":    main()`
+
+  <img src="images/image-20220228233223179.png" alt="image-20220228233223179" style="zoom:50%;" />
+
+  <img src="images/image-20220228233142089.png" alt="image-20220228233142089" style="zoom: 50%;" />
+
+  > detach() 截断反向传播的梯度流
+  >
+  > [(41条消息) Pytorch入门学习（九）---detach()的作用（从GAN代码分析)_my-GRIT的博客-CSDN博客_detach的作用](https://blog.csdn.net/qq_39709535/article/details/80804003)
+
+* 计算时间&空间利用情况
+
+* `student、teacher`模型利用
+
+  > 教师模型：未压缩模型。借鉴了蒸馏的思路。
+  >
+  > 学生模型：到当前层为止已压缩的模型
+  >
+  > ![image-20220228215838289](images/image-20220228215838289.png)
+
+* ```
+  pesudo_quantization_layers = [] # 伪量化/量化反量化/量化感知训练
+  for layer in layers:
+  ```
+
+  * STEP1：使用pq逐层量化网络
+  * 获取须量化的激活值，并划分批次（激活值总数=每批次激活数*循环次数=batch_size * iter）
+  * 获取权重矩阵并从计算图中分离它
+  * 分配stride、padding值
+  * 区分全连接层和卷积层的block大小
+
+  - [x] Q：选择合适的质心数？如何挑选的？A：这个操作是为了限制中心向量的个数不要太大，我们程序里面一般就是输入值
+
+  * 计算压缩比/索引矩阵、质心、码本、未量化层、量化层的存储大小、激活样本数
+  * 乘积量化pq
+
+  - [x] `if len(args.restart) > 0:`只量化未量化的层。
+
+    > Q：如何通过restart判断是否量化？
+    >
+    > A：arg.restart就是训练的时候已经量化的层可以直接读出来，接着往后量化。主要是为了防止因为一些突发情况程序中断，可以接着训练，而不用重新开始。
+    >
+    > A：这个是参数，默认值是None，字符串类型的，输入的是一个路径，如果不输入就不用restart 。输入的路径：运行程序的时候通过命令参数输入，比如python mix_quantization.py --restart ./tmp
+
+  * - [ ] 下载质心数和assignments（我居然忘了assignments是啥！！！好多参数还是不太明白是什么意思）
+
+    * 量化权重矩阵
+
+  * STEP2：QAT/微调码本
+
+* STEP3：微调整个网络
+
+
+
+
+
+
+
+- [ ] 丢失俩args.n_activations
+
+
+
+
+
+讨论bn&bias
+
+提取卷积层的名字，排除bn&bias
+
+
+
+format()
+
+format()功能更强大，该函数把字符串当成一个模板，通过传入的参数进行格式化，并且使用大括号‘{}’作为特殊字符代替‘%’
+
+[python格式化输出之format用法 - lovejh - 博客园 (cnblogs.com)](https://www.cnblogs.com/lovejh/p/9201219.html)
+
+
+
+## utils
+
+### watcher.py
+
+watcher.py用于提取激活值
