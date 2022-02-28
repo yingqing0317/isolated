@@ -53,16 +53,16 @@
 * 合并分支`git merge 待合并分支名`（合并当前分支和待合并分支）![image-20220226235334197](images/image-20220226235334197.png)
 * 删除分支`git branch -d 分支名`
 
-![image-20220226235527613](images/image-20220226235527613.png)
+<img src="images/image-20220226235527613.png" alt="image-20220226235527613" style="zoom:80%;" />
 
 * 查看状态`git status`
 
-![image-20220227000737911](images/image-20220227000737911.png)
+<img src="images/image-20220227000737911.png" alt="image-20220227000737911" style="zoom:80%;" />
 
 * 使用图形化工具解决冲突`git mergetool`
 * 查看分支情况`git branch`
 
-![image-20220227001155763](images/image-20220227001155763.png)
+<img src="images/image-20220227001155763.png" alt="image-20220227001155763" style="zoom: 50%;" />
 
 * 查看分支合并情况`git branch --merged/--no-merged`（注：已合并到当前分支的可以直接删掉，未合并到当前分支的则须强制删除-如果需要的话）
 
@@ -72,9 +72,9 @@
 
 ## 常用流程
 
-![image-20220227180445694](images/image-20220227180445694.png)
+<img src="images/image-20220227180445694.png" alt="image-20220227180445694" style="zoom: 67%;" />
 
-![image-20220227180529188](images/image-20220227180529188.png)
+<img src="images/image-20220227180529188.png" alt="image-20220227180529188" style="zoom: 67%;" />
 
 ## bug
 
@@ -88,7 +88,7 @@
 
 [(41条消息) github设置添加SSH_Kevin's Blog-CSDN博客_github添加ssh](https://blog.csdn.net/Aaron_Miller/article/details/90269019)
 
-![image-20220227163041609](images/image-20220227163041609.png)
+<img src="images/image-20220227163041609.png" alt="image-20220227163041609" style="zoom: 50%;" />
 
 * 本地图片上传
 
@@ -96,13 +96,13 @@
 
 实用：格式-图像-全局图像设置-...（直接在该文件夹创建一个images文件，一同上传到远程仓库）
 
-![image-20220227180647034](images/image-20220227180647034.png)
+<img src="images/image-20220227180647034.png" alt="image-20220227180647034" style="zoom: 33%;" />
 
 
 
 # 2.Markdown
 
-![image-20220226130549560](images/image-20220226130549560.png)
+<img src="images/image-20220226130549560.png" alt="image-20220226130549560" style="zoom: 67%;" />
 
 **加粗**
 
@@ -118,7 +118,7 @@
 
 :joy:表情（:<表情名称>:）
 
-![image-20220226133419799](images/image-20220226133419799.png)
+<img src="images/image-20220226133419799.png" alt="image-20220226133419799" style="zoom: 33%;" />
 
 
 
@@ -143,7 +143,7 @@ Webhook 就是一个接收 HTTP POST（或GET，PUT，DELETE）的URL，一个�
 
 [HTTP协议和SOCKS5协议 - 尹正杰 - 博客园 (cnblogs.com)](https://www.cnblogs.com/yinzhengjie/p/7357860.html)
 
-![image-20220226140422122](images/image-20220226140422122.png)
+<img src="images/image-20220226140422122.png" alt="image-20220226140422122" style="zoom: 50%;" />
 
 ### HTTP请求
 
@@ -257,6 +257,8 @@ Step3: Finetune the whole network.
   > 猜测：
   >
   > k取字符串 . 最后出现处的k值，且①从keys中依次查找②k不包括bias
+  >
+  > A：把模型所有层的名字提取出来
 
   - [ ] `k[:k.rfind(".")]`
   - [ ] `if 'bias' in k`
@@ -270,6 +272,8 @@ Step3: Finetune the whole network.
   > 猜测：
   >
   > 对student模型中的以.weight.data的layer进行排序，并截断反向传播的梯度流
+  >
+  > A：把它对应的参数权重摘出来
 
   > rfind() 查找子串最后一次出现的位置，如果查找的子串不存在，则返回-1*
 
