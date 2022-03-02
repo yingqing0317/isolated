@@ -1,3 +1,5 @@
+
+
 # 1.Git
 
 ## 常用指令
@@ -157,6 +159,24 @@ API（Application Programming Interface，应用程序接口）是一些预先�
 
 快照指照相馆的一种冲洗过程短的照片·如：证件快照。基于硬件编程技术的一种，针对内存进行的快速读取技术，常用于硬件开发。
 
+## TCP、UDP
+
+[一文搞懂TCP与UDP的区别 - Fundebug - 博客园 (cnblogs.com)](https://www.cnblogs.com/fundebug/p/differences-of-tcp-and-udp.html)
+
+![img](images/2019-03-21-01.png)
+
+![image-20220301140949233](images/image-20220301140949233.png)
+
+## 服务器网卡
+
+网卡，又称网络适配器或网络接口卡（NIC），英文名为Network Interface Card。在网络中，如果有一台计算机没有网卡，那么这台计算机将不能和其他计算机通信，它将得不到服务器所提供的任何服务了。当然如果服务器没有网卡，就称不上服务器了，所以说网卡是服务器必备的设备，就像普通PC（个人电脑）要配处理器一样。平时我们所见到的PC机上的网卡主要是将PC机和LAN（局域网）相连接，而服务器网卡，一般是用于服务器与交换机等网络设备之间的连接。
+
+
+
+
+
+
+
 
 
 # 4.深度学习
@@ -217,11 +237,9 @@ Step3: Finetune the whole network.
 
   [(41条消息) os.environ["CUDA_DEVICE_ORDER"\] = "PCI_BUS_ID" os.environ["CUDA_VISIBLE_DEVICES"] = "0"_James_J的博客-CSDN博客](https://blog.csdn.net/Jamesjjjjj/article/details/83414680)
 
-* ```
-  if __name__ == '__main__':    main()
-  ```
+* `if __name__ == '__main__':    main()`
 
-### 5.2.2 def parse_args(): # 命令行解析
+## 5.2.2 def parse_args(): # 命令行解析
 
 [Python argparse的用法（运行时动态传参） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/160242319)
 
@@ -239,6 +257,13 @@ Step3: Finetune the whole network.
 * 乘积量化pq的参数
 * 微调finetune的参数
 * 量化感知训练error correction(QAT)的参数
+  - [ ] 2、5000；weight_observer
+
+<img src="images/image-20220301203423756.png" alt="image-20220301203423756" style="zoom: 50%;" />![image-20220301210536184](images/image-20220301210536184.png)
+
+<img src="images/image-20220301210608612.png" alt="image-20220301210608612" style="zoom:50%;" />
+
+
 
 ### 5.2.3 def main():#主函数
 
@@ -246,58 +271,11 @@ Step3: Finetune the whole network.
 
 * `watcher`提取需要量化的层（对bias和bn差异性处理的原因？？？）
 
-  > watcher：监测并存储激活值（主要是需要量化的激活值）（BN不需要monitor）
-  >
-  > - [x] 所有的前向传播和反向传播都要用到激活值耶，都要用watcher&hook提取&保存
-  >
-  > 一层量化层对应一个watcher
-
-  - [ ] `layers = [k[:k.rfind(".")] for k in keys if 'bias' not in k]`
-
-  > 猜测：
-  >
-  > k取字符串 . 最后出现处的k值，且①从keys中依次查找②k不包括bias
-  >
-  > A：把模型所有层的名字提取出来
-
-  - [ ] `k[:k.rfind(".")]`
-  - [ ] `if 'bias' in k`
-  - [ ] `if 'weight' in k`
-  - [ ] `attrgetter()()`
-
-  > `attrgetter()对自定义对象排序`
-
-  - [ ] `M = attrgetter(layer + '.weight.data')(student).detach()`
-
-  > 猜测：
-  >
-  > 对student模型中的以.weight.data的layer进行排序，并截断反向传播的梯度流
-  >
-  > A：把它对应的参数权重摘出来
-
-  > rfind() 查找子串最后一次出现的位置，如果查找的子串不存在，则返回-1*
-
-  > hook:
-  >
-  > 为了节省显存（内存），pytorch在计算过程中不保存中间变量，包括中间层的特征图和非叶子张量的梯度等。有时对网络进行分析时需要查看或修改这些中间变量，此时就需要注册一个钩子（hook）来导出需要的中间变量。
-  >
-  > [(36条消息) 【pytorch学习】四种钩子方法（register_forward_hook等）的用法和注意点_Brikie的博客-CSDN博客__forward_pre_hooks](https://blog.csdn.net/Brikie/article/details/114255743?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn_v2&utm_relevant_index=1)
-  >
-  > ![image-20220228195544882](images/image-20220228195544882.png)
-
-  - [ ] 未保存中间变量，那怎么用hook导出呢？
-  - [ ] `self._watch`
-  - [ ] `if __name__ == "__main__":    main()`
-
-  <img src="images/image-20220228233223179.png" alt="image-20220228233223179" style="zoom:50%;" />
-
-  <img src="images/image-20220228233142089.png" alt="image-20220228233142089" style="zoom: 50%;" />
-
-  > detach() 截断反向传播的梯度流
-  >
-  > [(41条消息) Pytorch入门学习（九）---detach()的作用（从GAN代码分析)_my-GRIT的博客-CSDN博客_detach的作用](https://blog.csdn.net/qq_39709535/article/details/80804003)
-
 * 计算时间&空间利用情况
+
+  - [ ] 如何计算
+
+    <img src="images/image-20220301233043009.png" alt="image-20220301233043009" style="zoom:50%;" />
 
 * `student、teacher`模型利用
 
@@ -351,13 +329,15 @@ Step3: Finetune the whole network.
 
 
 
-讨论bn&bias
+- [ ] 讨论bn&bias
 
-提取卷积层的名字，排除bn&bias
+  A：提取卷积层的名字，排除bn&bias
 
 
 
-format()
+
+
+* format()
 
 format()功能更强大，该函数把字符串当成一个模板，通过传入的参数进行格式化，并且使用大括号‘{}’作为特殊字符代替‘%’
 
@@ -365,8 +345,199 @@ format()功能更强大，该函数把字符串当成一个模板，通过传入
 
 
 
-## utils
+* self.register_buffer()
 
-### watcher.py
+PyTorch中定义模型时，有时候会遇到self.register_buffer('name', Tensor)的操作，该方法的作用是定义一组参数，该组参数的特别之处在于：模型训练时不会更新（即调用 optimizer.step() 后该组参数不会变化，只可人为地改变它们的值），但是保存模型时，该组参数又作为模型参数不可或缺的一部分被保存。
 
-watcher.py用于提取激活值
+[PyTorch nn.Module中的self.register_buffer()解析 - 简书 (jianshu.com)](https://www.jianshu.com/p/12a8207149b0)
+
+
+
+* 类(Class)
+
+类(Class): 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。
+
+类变量：类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。
+
+[Python入门之类(class) - chengd - 博客园 (cnblogs.com)](https://www.cnblogs.com/chengd/articles/7287528.html)
+
+
+
+* `nn.parallel.DataParallel()`
+
+公司配备多卡的GPU服务器，当我们在上面跑程序的时候，当迭代次数或者epoch足够大的时候，我们通常会使用nn.DataParallel函数来用多个GPU来加速训练。一般我们会在代码中加入以下这句：
+
+```text
+device_ids = [0, 1]
+net = torch.nn.DataParallel(net, device_ids=device_ids)
+```
+
+DataParallel 会自动帮我们将数据切分 load 到相应 GPU，将模型复制到相应 GPU，进行正向传播计算梯度并汇总。
+
+[Pytorch的nn.DataParallel - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/102697821)
+
+
+
+* `torch.nn.Parameter()`
+
+`self.v = torch.nn.Parameter(torch.FloatTensor(hidden_size))`
+
+可以把这个函数理解为类型转换函数，将一个不可训练的类型`Tensor`转换成可以训练的类型`parameter`并将这个`parameter`绑定到这个`module`里面(`net.parameter()`中就有这个绑定的`parameter`，所以在参数优化的时候可以进行优化的)，所以经过类型转换这个`self.v`变成了模型的一部分，成为了模型中根据训练可以改动的参数了。使用这个函数的目的也是想让某些变量在学习的过程中不断的修改其值以达到最优化。
+
+
+
+* `torch.cat()`
+
+`torch.cat(inputs, dimension=0) → Tensor`
+
+torch.cat() – 在给定维度上对输入的张量序列seq 进行连接操作,可以看做 torch.split() 和 torch.chunk()的反操作
+inputs (sequence of Tensors) – 可以是任意相同Tensor 类型的python 序列
+dimension (int, optional) – 沿着此维连接张量序列。
+
+
+
+## 5.3 pq
+
+各个参数：
+
+* in_activations=cin*n_samples
+* n_activations没有用到
+* n_samples是pq在求loss的时候需要激活值x，这个n_samples就是x的采样数
+* 
+
+
+
+<img src="images/image-20220302220830431.png" alt="image-20220302220830431" style="zoom:67%;" />
+
+
+
+### 5.3.1 pq.y
+
+* sample_activations、sample_weights
+
+> 这俩就是采样用的，因为全部计算的话，计算量太大
+>
+> 激活值是C x H x W，我们对它采样，只抽取n_sample x H x W
+
+* encode、decode
+
+> encode就是学习中心向量的过程
+>
+> decode是将中心向量复原成权值矩阵
+
+
+
+
+
+### 5.3.2 distance.py
+
+distances.py是计算复原矩阵和原矩阵的距离（其实是向量的距离）。具体过程：先展开，再对每个展开式求误差的平方。实现的是：
+
+<img src="images/image-20220302221103194.png" alt="image-20220302221103194" style="zoom:50%;" />
+
+这里原作者用的broadcasting来实现的，LMY学长：我现在也没搞太懂，为啥有效。
+
+<img src="images/image-20220302221206686.png" alt="image-20220302221206686" style="zoom: 33%;" />
+
+作者说这样更有效，更算得更快。LMY学长：我还没搞懂。
+
+<img src="images/image-20220302221300022.png" alt="image-20220302221300022" style="zoom:50%;" />
+
+
+
+
+
+## 5.4 utils
+
+### 5.4.1 watcher.py
+
+> watcher：监测并存储激活值（主要是需要量化的激活值）（BN不需要monitor）
+>
+> - [x] 所有的前向传播和反向传播都要用到激活值，都要用watcher&hook提取&保存
+>
+> - [x] 一层量化层对应一个watcher
+>
+> - [x] watch就是在网络前向推理的过程中插入一个hook函数，然后在这个hook函数里面保存中间激活值，以备后面使用
+>
+> - [x] unwatch和remove的操作是防止后面测试的时候又调用这个hook函数（hook函数只需要调用一次）
+>
+>   <img src="images/image-20220302220301407.png" alt="image-20220302220301407" style="zoom: 67%;" />
+>
+
+
+
+- [ ] `layers = [k[:k.rfind(".")] for k in keys if 'bias' not in k]`
+
+> 学长：把模型所有层的名字提取出来
+>
+> 猜测：
+>
+> k取字符串 . 最后出现处的k值，且①从keys中依次查找②k不包括bias
+
+- [ ] `if 'bias' in k`
+- [ ] `if 'weight' in k`
+
+
+
+- [ ] `M = attrgetter(layer + '.weight.data')(student).detach()`
+
+> `attrgetter()对自定义对象排序`
+>
+> f = attrgetter(‘name’)，调用 f(b) 返回 b.name
+>
+> `detach()` 截断反向传播的梯度流
+>
+> 学长：把它对应的参数权重摘出来。具体是：attrgetter是把模型student里面的一个名字为weight.data的tensor复制出来，detach在这里是复制作用。
+>
+> 猜测：按layer排序，并且每层layer的参数权重都会被摘出来
+
+
+
+> rfind() 查找子串最后一次出现的位置，如果查找的子串不存在，则返回-1*
+
+
+
+> hook:
+>
+> 为了节省显存（内存），pytorch在计算过程中不保存中间变量，包括中间层的特征图和非叶子张量的梯度等。有时对网络进行分析时需要查看或修改这些中间变量，此时就需要注册一个钩子（hook）来导出需要的中间变量。
+>
+> [(36条消息) 【pytorch学习】四种钩子方法（register_forward_hook等）的用法和注意点_Brikie的博客-CSDN博客__forward_pre_hooks](https://blog.csdn.net/Brikie/article/details/114255743?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn_v2&utm_relevant_index=1)
+>
+> 钩子函数、注册函数、回调函数，他们的概念其实是一样的。
+>
+> <img src="images/image-20220301222858590.png" alt="image-20220301222858590" style="zoom:50%;" />
+>
+> [(59 封私信 / 16 条消息) 回调函数（callback）是什么？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/19801131)
+
+
+
+
+
+
+
+
+
+
+
+> ![image-20220228195544882](images/image-20220228195544882.png)
+
+- [ ] 未保存中间变量，那怎么用hook导出呢？
+- [ ] `self._watch`
+- [ ] `if __name__ == "__main__":    main()`
+
+<img src="images/image-20220228233223179.png" alt="image-20220228233223179" style="zoom:50%;" />
+
+<img src="images/image-20220228233142089.png" alt="image-20220228233142089" style="zoom: 50%;" />
+
+> detach() 截断反向传播的梯度流
+>
+> [(41条消息) Pytorch入门学习（九）---detach()的作用（从GAN代码分析)_my-GRIT的博客-CSDN博客_detach的作用](https://blog.csdn.net/qq_39709535/article/details/80804003)
+
+
+
+
+
+
+
+
+
