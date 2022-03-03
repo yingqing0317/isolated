@@ -396,11 +396,51 @@ dimension (int, optional) – 沿着此维连接张量序列。
 
 
 
+* `torch.norm`
+
+[(41条消息) torch.norm的理解_goodxin_ie的博客-CSDN博客_torch。norm](https://blog.csdn.net/goodxin_ie/article/details/84657975)
+
+`torch.norm(input, p, dim, out=None,keepdim=False) → Tensor`
+
+返回输入张量给定维`dim` 上每行的p 范数。
+
+
+
+* `lambda argument_list : expression`  
+
+[(41条消息) 关于Python中的lambda，这篇阅读量10万+的文章可能是你见过的最完整的讲解_测试不将就-CSDN博客_lambda python](https://blog.csdn.net/zjuxsl/article/details/79437563?ops_request_misc=%7B%22request%5Fid%22%3A%22164627378116781685351957%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fall.%22%7D&request_id=164627378116781685351957&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-79437563.pc_search_result_cache&utm_term=lambda&spm=1018.2226.3001.4187)
+
+return lambda x, y: x+y返回一个加法函数。这时，lambda函数实际上是定义在某个函数内部的函数，称之为嵌套函数，或者内部函数。对应的，将包含嵌套函数的函数称之为外部函数。
+
+![image-20220303103722787](images/image-20220303103722787.png)
+
+
+
+* `map()`
+
+<img src="images/image-20220303104238274.png" alt="image-20220303104238274" style="zoom:50%;" />
+
+
+
+* `np.argmin()`
+
+  <img src="images/image-20220303154357044.png" alt="image-20220303154357044" style="zoom:50%;" />
+
+
+
+* 
+
+
+
+
+
+
+
 ## 5.3 pq
 
 各个参数：
 
-* in_activations=cin*n_samples
+* in_activations=C_in * n_samples
 * n_activations没有用到
 * n_samples是pq在求loss的时候需要激活值x，这个n_samples就是x的采样数
 * 
