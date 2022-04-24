@@ -691,42 +691,6 @@ distances.py是计算复原矩阵和原矩阵的距离（其实是向量的距�
 
 
 
-精神鸦片常常指以下作用的文化产品：让人精神上瘾而产生依赖作用，久而久之损害人的身心健康。简单来说，精神鸦片只能让人感觉快乐，但不会带来实质性的帮助。
-
-Spiritual opium often refers to cultural products which are spiritually addictive and damage people's physical and mental health over time. Simply say, spiritual opium can only make people feel happy, but it will not bring real help.
-
-在我看来，把电子游戏形容为精神鸦片有些言过其实了。电子游戏被称为精神鸦片的主要原因是它产生了一种令人上瘾的反馈回路，并一遍遍地固化我们的行为模式。但这并不代表着我们应该批判游戏，因为游戏本身无罪，相反，它或许是当今世界上，对于激励反馈机制，应用得最好的事物。学术上也已经有很多研究证明了游戏具有提高智力、避免阿尔兹海默症等益处。换句话说，健康、合理地进行游戏，是我们取悦自己的最好方式。
-
-In my opinion, describing video games as spiritual opium is an exaggeration. The main reason video games are called spiritual opium is that they create an addictive feedback loop that solidifies our behavior patterns over and over. But that doesn't mean we should criticize video games, because video games themselves are innocent. On the contrary, video games may be the best application of incentive feedback mechanism in the world today. There have also been many academic studies proving that video games have benefits, such as improving intelligence and avoiding Alzheimer's disease. In other words, playing video games healthily and reasonably is the best way for us to please ourselves.
-
-对于正处于三观建立关键时期的未成年人，如何培养自律能力，如何在电子游戏上分配合理的时间和精力，是一个近年来备受关注的问题。
-
-For minors who are in the critical period of establishing the three views, how to cultivate self-discipline and how to allocate reasonable time and energy to video games is a problem that has attracted much attention in recent years.
-
-对于这个问题，我认为有如下的手段：首先，家庭教育和学校教育中正确引导不可或缺。家长和老师应该让孩子清晰地知道电子游戏的益处和危害。然后，建议学校多开设兴趣课程，培养孩子其他的兴趣爱好，让孩子的注意力不仅仅局限于电子游戏。最后，家长可以给予孩子合适的奖惩措施，强制性地培养孩子良好的学习和生活习惯。
-
-For this problem, I think there are the following methods: First of all, parents and teachers must make children clear about the benefits and harms of video games. Then,  schools are better to offer more interest courses to cultivate children's other interests and hobbies, so children's attention can be not limited to video games. Last but not least, parents should give their children appropriate rewards and punishments ,then compulsorily help their children cultivate good habits.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
